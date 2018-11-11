@@ -12,6 +12,18 @@
     },
     "cordova-plugin-qrscanner": {
       "PACKAGE_NAME": "com.arunpong.hello"
+    },
+    "cordova-plugin-buildinfo": {
+      "PACKAGE_NAME": "com.arunpong.hello"
+    },
+    "cordova-universal-links-plugin": {
+      "PACKAGE_NAME": "com.arunpong.hello"
+    },
+    "cordova-plugin-browsertab": {
+      "PACKAGE_NAME": "com.arunpong.hello"
+    },
+    "cordova-plugin-inappbrowser": {
+      "PACKAGE_NAME": "com.arunpong.hello"
     }
   },
   "dependent_plugins": {}

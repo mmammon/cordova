@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "155140630032",
+    "firebase_url": "https://mammon-c87f8.firebaseio.com",
+    "project_id": "mammon-c87f8",
+    "storage_bucket": "mammon-c87f8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:155140630032:android:5be0e26922cdaed8",
+        "android_client_info": {
+          "package_name": "com.arunpong.hello"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "155140630032-ja5drd2pjdj83lcou8vhn4o38fnl75kb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC-OJ2NbDO-folk0LFJqLFhxWA_g-WotA8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -7,6 +7,25 @@
     <feature name="QRScanner">
         <param name="android-package" value="com.bitpay.cordova.qrscanner.QRScanner" />
     </feature>
+    <feature name="BuildInfo">
+        <param name="android-package" value="org.apache.cordova.buildinfo.BuildInfo" />
+    </feature>
+    <feature name="UniversalLinks">
+        <param name="android-package" value="com.nordnetab.cordova.ul.UniversalLinksPlugin" />
+        <param name="onload" value="true" />
+    </feature>
+    <feature name="BrowserTab">
+        <param name="android-package" value="com.google.cordova.plugin.browsertab.BrowserTab" />
+    </feature>
+    <feature name="InAppBrowser">
+        <param name="android-package" value="org.apache.cordova.inappbrowser.InAppBrowser" />
+    </feature>
+    <universal-links>
+        <host name="DYNAMIC_LINK_DOMAIN" scheme="https" />
+        <host name="AUTH_DOMAIN" scheme="https">
+            <path url="/__/auth/callback" />
+        </host>
+    </universal-links>
     <name>HelloWorld</name>
     <description>
         A sample Apache Cordova application that responds to the deviceready event.
@@ -24,4 +43,5 @@
     <allow-intent href="geo:*" />
     <allow-intent href="market:*" />
     <preference name="loglevel" value="DEBUG" />
+    <preference name="AndroidLaunchMode" value="singleTask" />
 </widget>
