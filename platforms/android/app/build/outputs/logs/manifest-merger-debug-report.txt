@@ -183,13 +183,13 @@ ADDED from D:\977-341\hellocordova\platforms\android\app\src\main\AndroidManifes
 	android:name
 		ADDED from D:\977-341\hellocordova\platforms\android\app\src\main\AndroidManifest.xml:15:19-67
 data
-ADDED from D:\977-341\hellocordova\platforms\android\app\src\main\AndroidManifest.xml:16:9-74
+ADDED from D:\977-341\hellocordova\platforms\android\app\src\main\AndroidManifest.xml:16:9-83
 	android:path
-		ADDED from D:\977-341\hellocordova\platforms\android\app\src\main\AndroidManifest.xml:22:65-97
+		ADDED from D:\977-341\hellocordova\platforms\android\app\src\main\AndroidManifest.xml:22:82-114
 	android:host
-		ADDED from D:\977-341\hellocordova\platforms\android\app\src\main\AndroidManifest.xml:16:15-49
+		ADDED from D:\977-341\hellocordova\platforms\android\app\src\main\AndroidManifest.xml:16:15-58
 	android:scheme
-		ADDED from D:\977-341\hellocordova\platforms\android\app\src\main\AndroidManifest.xml:16:50-72
+		ADDED from D:\977-341\hellocordova\platforms\android\app\src\main\AndroidManifest.xml:16:59-81
 uses-sdk
 ADDED from D:\977-341\hellocordova\platforms\android\app\src\main\AndroidManifest.xml:26:3-71
 INJECTED from D:\977-341\hellocordova\platforms\android\app\src\main\AndroidManifest.xml:26:3-71

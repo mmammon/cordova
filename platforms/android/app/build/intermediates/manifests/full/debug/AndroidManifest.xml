@@ -79,7 +79,7 @@
                 <category android:name="android.intent.category.BROWSABLE" />
 
                 <data
-                    android:host="DYNAMIC_LINK_DOMAIN"
+                    android:host="mobileproject.page.link/Zi7X"
                     android:scheme="https" />
             </intent-filter>
             <intent-filter android:autoVerify="true" >
@@ -89,7 +89,7 @@
                 <category android:name="android.intent.category.BROWSABLE" />
 
                 <data
-                    android:host="AUTH_DOMAIN"
+                    android:host="mammon-c87f8.firebaseapp.com"
                     android:path="/__/auth/callback"
                     android:scheme="https" />
             </intent-filter>

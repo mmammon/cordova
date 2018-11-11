@@ -21,8 +21,8 @@
         <param name="android-package" value="org.apache.cordova.inappbrowser.InAppBrowser" />
     </feature>
     <universal-links>
-        <host name="DYNAMIC_LINK_DOMAIN" scheme="https" />
-        <host name="AUTH_DOMAIN" scheme="https">
+        <host name="mobileproject.page.link/Zi7X" scheme="https" />
+        <host name="mammon-c87f8.firebaseapp.com" scheme="https">
             <path url="/__/auth/callback" />
         </host>
     </universal-links>
