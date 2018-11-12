@@ -23,11 +23,11 @@
         <div class="scanner-laser laser-leftTop" style="opacity: 0.5;"></div>
     </div>
     <footer class="fixed-bottom" style="position: fixed;height: 65px;bottom: 0;width: 100%; background-color: black;">
-        <ons-button style="background-color:black; width: 30%; margin-left:50px; ">
-            <i id="light" style="font-size: 50px; color:white;" class="fas fa-lightbulb" onclick="enableLight();"></i>
+        <ons-button id="bulb" style="background-color:rgb(24, 30, 44); width: 30%; margin-left:50px; ">
+            <i id="light" style="font-size: 40px; color:white;" class="fas fa-lightbulb" onclick="enableLight();"></i>
         </ons-button>
-        <ons-button id="light" style="background-color:black; width: 30%; margin-left:50px; ">
-            <i style="font-size: 50px; color:white;" class="fas fa-undo-alt" onclick="hideScanner();"></i>
+        <ons-button id="light" style="background-color:rgb(24, 30, 44); width: 30%; margin-left:50px; ">
+            <i style="font-size: 40px; color:white;" class="fas fa-undo-alt" onclick="hideScanner();"></i>
         </ons-button>
     </footer>
     <script>
@@ -62,7 +62,7 @@
                     err && console.error(err);
                     console.log(status);
                 });
-                document.getElementById("light").style.color = "yellow";
+                document.getElementById("light").className = "far fa-lightbulb";
                 lighton = true;
             } else if (lighton == true) {
                 disableLight();
@@ -73,7 +73,7 @@
                 err && console.error(err);
                 console.log(status);
             });
-            document.getElementById("light").style.color = "white";
+            document.getElementById("light").className = "fas fa-lightbulb";
             lighton = false;
         }
         function hideScanner() {
@@ -94,29 +94,29 @@
     .laser-leftTop {
         top: 0;
         left: 0;
-        border-top: solid green 5px;
-        border-left: solid green 5px;
+        border-top: solid lightseagreen 5px;
+        border-left: solid lightseagreen 5px;
     }
 
     .laser-leftBottom {
         bottom: 0;
         left: 0;
-        border-bottom: solid green 5px;
-        border-left: solid green 5px;
+        border-bottom: solid lightseagreen 5px;
+        border-left: solid lightseagreen 5px;
     }
 
     .laser-rightTop {
         top: 0;
         right: 0;
-        border-top: solid green 5px;
-        border-right: solid green 5px;
+        border-top: solid lightseagreen 5px;
+        border-right: solid lightseagreen 5px;
     }
 
     .laser-rightBottom {
         bottom: 0;
         right: 0;
-        border-bottom: solid green 5px;
-        border-right: solid green 5px;
+        border-bottom: solid lightseagreen 5px;
+        border-right: solid lightseagreen 5px;
     }
 </style>
 
