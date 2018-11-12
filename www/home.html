@@ -375,28 +375,28 @@
     getHomeData()
     tatol();
     document.addEventListener('prechange', function (event) {
-    if (event.index == 0) {
-      console.log('Home click');
-      getHomeData()
-    } else if (event.index == 1) {
-      console.log('Cart click');
-      getData2cart()
-    } else if (event.index == 2) {
-      console.log('Cart click');
-      var name = localStorage.getItem('name');
-      var items = localStorage.getItem('items');
-      if (name == null && items == null) {
-        getproductData()
-      } else if (name != null && items == null) {
-        getproductData(name)
-      } else if (name != null && items == null) { }
-    } else if (event.index == 3) {
-      var title = localStorage.getItem('title');
-      console.log('Cart click');
-      // test(title)
-    }
-    localStorage.clear();
-  });
+        if (event.index == 0) {
+            console.log('Home click');
+            getHomeData()
+        } else if (event.index == 1) {
+            console.log('Cart click');
+            getData2cart()
+        } else if (event.index == 2) {
+            console.log('Cart click');
+            var name = localStorage.getItem('name');
+            var items = localStorage.getItem('items');
+            if (name == null && items == null) {
+                getproductData()
+            } else if (name != null && items == null) {
+                getproductData(name)
+            } else if (name != null && items == null) { }
+        } else if (event.index == 3) {
+            var title = localStorage.getItem('title');
+            console.log('Cart click');
+            // test(title)
+        }
+        localStorage.clear();
+    });
 
     function getHomeData() {
         var code = localStorage.getItem('code');
@@ -406,7 +406,6 @@
         var docRef = db.collection("UI").doc("home");
         docRef.get().then(function (doc) {
             if (doc.exists) {
-
                 console.log("Document data:", doc.data());
                 var data = doc.data();
                 $('#appname').html(data.appname);
@@ -415,10 +414,10 @@
                 $('#icon1').attr('icon', data.categories[0].icon);
                 $('#Category_1_name').html(data.categories[0].name);
                 var icon_template = $('#icon_template').html();
-                var html = ejs.render(icon_template, { categories: data.categories });
+                var html = ejs.render(icon_template, {
+                    categories: data.categories
+                });
                 $('#icon').html(html);
-
-
             } else {
                 // doc.data() will be undefined in this case
                 console.log("No such document!");
@@ -443,65 +442,238 @@
         // });
 
     }
-    function getCartData() {
-        var docRef = db.collection("UI").doc("cart");
-        docRef.get().then(function (doc) {
-            if (doc.exists) {
 
-                console.log("Document data:", doc.data());
-                var data = doc.data();
-
-                // $('#photo').html(data.cart[0].photo);
-                // $('#price').html(data.cart[0].price); 
-                var pic_template = $('#pic_template').html();
-                var html = ejs.render(pic_template, { cart: data.cart });
-                $('#pic').html(html);
-
-
-            } else {
-                // doc.data() will be undefined in this case
-                console.log("No such document!");
-            }
-        }).catch(function (error) {
-            console.log("Error getting document:", error);
+  function getCartData() {
+    var docRef = db.collection("UI").doc("cart");
+    docRef.get().then(function (doc) {
+      if (doc.exists) {
+        console.log("Document data:", doc.data());
+        var data = doc.data();
+        // $('#photo').html(data.cart[0].photo);
+        // $('#price').html(data.cart[0].price); 
+        var pic_template = $('#pic_template').html();
+        var html = ejs.render(pic_template, {
+          cart: data.cart
         });
+        $('#pic').html(html);
+      } else {
+        // doc.data() will be undefined in this case
+        console.log("No such document!");
+      }
+    }).catch(function (error) {
+      console.log("Error getting document:", error);
+    });
+    // $.getJSON('cart.json', function (data) {
+    //     console.log(data);
+    // })
+  }
 
-        // $.getJSON('cart.json', function (data) {
-        //     console.log(data);
-
-        // })
-    }
-
-
-    function getproductData() {
-        var allProductRef = db.collection("PRODUCT").where("category", "==", "sport");
-        allProductRef.get().then(function (querySnapshot) {
-            querySnapshot.forEach(function (doc) {
+  function getproductData(name) {
+    console.log(name);
+    if (name == null) {
+      db.collection("PRODUCT").get()
+        .then(function (querySnapshot) {
+          // doc.data() is never undefined for query doc snapshots
+          var product_template = $('#product_template').html();
+          console.log(querySnapshot.docs);
+          var html = ejs.render(product_template, {
+            product: querySnapshot.docs
+          });
+          $('#product').html(html);
+        })
+        .catch(function (error) {
+          console.log("Error getting documents: ", error);
+        });
+    } else {
+      db.collection("PRODUCT").where("category", "==", name).get()
+        .then(function (querySnapshot) {
+          console.log(querySnapshot.docs);
+          if (querySnapshot.docs.length == 0) {
+            var html = "No product for your search"
+            db.collection("PRODUCT").get()
+              .then(function (querySnapshot) {
                 // doc.data() is never undefined for query doc snapshots
-                console.log(doc.id, " => ", doc.data());
-            });
+                var product_template = $('#product_template').html();
+                console.log(querySnapshot.docs);
+                html += ejs.render(product_template, {
+                  product: querySnapshot.docs
+                });
+                $('#product').html(html);
+              })
+              .catch(function (error) {
+                console.log("Error getting documents: ", error);
+              });
+          } else {
+            db.collection("PRODUCT").where("category", "==", name).get()
+              .then(function (querySnapshot) {
+                // doc.data() is never undefined for query doc snapshots
+                console.log(querySnapshot.docs);
+                var product_template = $('#product_template').html();
+                var html = ejs.render(product_template, {
+                  product: querySnapshot.docs
+                });
+                $('#product').html(html);
+              })
+              .catch(function (error) {
+                console.log("Error getting documents: ", error);
+              });
+          }
+          // doc.data() is never undefined for query doc snapshots
+          // var product_template = $('#product_template').html();
+          // console.log(querySnapshot.docs);
+          // var html = ejs.render(product_template, { product: querySnapshot.docs });
+          // $('#product').html(html);
+        })
+    }
+  }
+
+  function changeTab(name) {
+    console.log(name)
+    document.getElementById('tabbar').setActiveTab(2);
+    localStorage.setItem('name', name);
+    // var name1 = localStorage.getItem('name');
+    //  getproductData(name1)
+  }
+
+  function detail(pid) {
+    localStorage.setItem('id', pid);
+    myNavigator.pushPage('tab4.html')
+    showdetail()
+    // var name1 = localStorage.getItem('name');
+    //  getproductData(name1)
+  }
+
+  function showdetail() {
+    var id = localStorage.getItem('id');
+    db.collection("PRODUCT").where("pid", "==", id).get()
+      .then(function (querySnapshot) {
+        // doc.data() is never undefined for query doc snapshots
+        console.log(querySnapshot.docs);
+        var detail_template = $('#detail_template').html();
+        var html = ejs.render(detail_template, {
+          detail: querySnapshot.docs
+        });
+        $('#detail').html(html);
+      })
+      .catch(function (error) {
+        console.log("Error getting documents: ", error);
+      });
+    localStorage.clear();
+  }
+
+  function search(search) {
+
+    const filterItems = (needle, heystack) => {
+      let query = needle.toLowerCase();
+      return heystack.filter(item => item.data().title.toLowerCase().indexOf(needle) >= 0);
+    }
+    console.log("55+", filterItems(search, data));
+    var item = filterItems(search, data);
+    console.log("xxx", item)
+    localStorage.setItem('items', item);
+
+    console.log('tong', item);
+    test(item);
+    document.getElementById('tabbar').setActiveTab(2);
+    // localStorage.setItem('title', item);
+  }
+  const data = []
+
+  function tatol() {
+    console.log(search);
+    db.collection("PRODUCT").get()
+      .then(function (querySnapshot) {
+        querySnapshot.docs.forEach(function (item) {
+          data.push(item)
+          console.log(data)
         });
 
-        // function getproductData() {
-        //     var docRef = db.collection("UI").doc("product");
-        //     docRef.get().then(function (doc) {
-        //         if (doc.exists) {
+      })
+    // const fruits = data[1];
+  }
+  var dataCart = [];
 
-        //             console.log("Document data:", doc.data());
+  function addtocart(add2cart) {
+    localStorage.clear('quentinTarantino');
+    localStorage.setItem('quentinTarantino', add2cart);
+    var retrievedData = localStorage.getItem("quentinTarantino");
+    console.log(retrievedData);
+    dataCart.push(retrievedData);
+    alert(dataCart);
+  }
 
-        //             var data = doc.data();
-        //             var product_template = $('#product_template').html();
-        //             var html = ejs.render(product_template, { product: data.product });
-        //             $('#products').html(html);
+  function test(title) {
+    console.log("888", title);
+    // for(var i =0;i<tests.length;i++){
 
-        //         } else {
-        //             // doc.data() will be undefined in this case
-        //             console.log("No such document!");
-        //         }
-        //     }).catch(function (error) {
-        //         console.log("Error getting document:", error);
-        //     });
-    }
+
+    console.log('tset', title);
+    // doc.data() is never undefined for query doc snapshots
+
+    var product_template = $('#product_template').html();
+    var html = ejs.render(product_template, {
+      product: title
+    });
+    $('#product').html(html);
+
+    // console.log(tests)
+    // db.collection("PRODUCT").where("title", "==",tests).get()
+    //       .then(function (querySnapshot) {
+    //         // doc.data() is never undefined for query doc snapshots
+    //         console.log(querySnapshot.docs);
+    //         var test_template = $('#test_template').html();
+    //         var html = ejs.render(test_template, { test: querySnapshot.docs });
+    //         $('#test').html(html);
+    //       })
+    //       .catch(function (error) {
+    //         console.log("Error getting documents: ", error);
+    //       });
+    // }}
+  }
+  var dataCart = [];
+
+  function addtocart(add2cart) {
+    localStorage.clear('quentinTarantino');
+    localStorage.setItem('quentinTarantino', add2cart);
+    var retrievedData = localStorage.getItem("quentinTarantino");
+    console.log(retrievedData);
+    dataCart.push(retrievedData);
+
+    alert(dataCart);
+  }
+  //????????? array ??????????????? firebase ?????????????????? template
+
+  function getData2cart() {
+
+    var Delete = []
+    document.getElementById('pic').innerHTML = ""
+    console.log(dataCart);
+    var j = 0
+    dataCart.forEach(function (remove) {
+      Delete.push(j)
+      console.log(Delete)
+      j++
+    });
+    var testnum = 0;
+    dataCart.forEach(function (dataCart) {
+      var apr = db.collection("PRODUCT").where("pid", "==", dataCart);
+      apr.get().then(function (querySnapshot) {
+        console.log(querySnapshot.docs)
+        var pic_template = $('#pic_template').html();
+        var html = ejs.render(pic_template, {
+          cart: querySnapshot.docs,
+          num: testnum
+        });
+        console.log(html);
+
+
+
+        $('#pic').append(html);
+        testnum = testnum + 1;
+      })
+    })
+
+  }
 
     function addNewData() {
         var data = {
