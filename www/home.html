@@ -14,6 +14,7 @@
     <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-firestore.js"></script>.
     <script src="cordova.js"></script>
+    <script src="https://unpkg.com/ionicons@4.4.6/dist/ionicons.js"></script>
 
 
 
@@ -41,39 +42,39 @@
 </head>
 
 <body>
-    <ons-page>
+    <ons-navigator swipeable id="myNavigator" page="tab3.html">
+        <ons-page>
 
-        <ons-toolbar>
-            <div class="left">
-                <ons-toolbar-button>
-                    <ons-icon icon="fa-shopping-bag"></ons-icon>
-                </ons-toolbar-button>
-            </div>
-            <div class="center" style="text-align:center" id="appname">#</div>
-            <div class="right">
-                <ons-toolbar-button>
-                    <ons-icon icon="md-help" onclick="window.location.href = 'logout.html'" ></ons-icon>
-                </ons-toolbar-button>
-            </div>
-        </ons-toolbar>
+            <ons-toolbar style="background: rgb(214, 239, 255);">
+                <div class="left">
+                    <ons-toolbar-button>
+                        <ion-icon name="qr-scanner" style="font-size: 20px; margin-top: 12px;" onclick="scanQR()"></ion-icon>
+                    </ons-toolbar-button>
+                </div>
+                <div class="center" style="text-align:center; font-weight: bold; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;"
+                    id="appname">#</div>
+                <div class="right">
+                    <ons-toolbar-button>
+                        <ion-icon icon="log-out" style="font-size: 20px; margin-top: 12px;" onclick="window.location.href = 'logout.html'"></ion-icon>
+                    </ons-toolbar-button>
+                </div>
+            </ons-toolbar>
 
-        <ons-tabbar swipeable position="auto">
-            <ons-tab page="tab1.html" label="Home" icon="ion-home, material:md-home" badge="7" active>
-            </ons-tab>
-            <ons-tab page="tab2.html" label="Cart" icon="md-shopping-cart" active-icon="md-shopping-cart">
-            </ons-tab>
-            <ons-tab page="tab3.html" label="product" icon="md-shopping-cart" active-icon="md-shopping-cart">
-            </ons-tab>
-        </ons-tabbar>
+            <ons-tabbar swipeable position="auto" id="tabbar">
+                <ons-tab style="background: rgb(214, 239, 255);" page="tab1.html" label="Home" icon="ion-home, material:md-home" active>
+                </ons-tab>
+                <ons-tab style="background: rgb(214, 239, 255);" page="tab2.html" label="Cart" icon="md-shopping-cart" active-icon="md-shopping-cart">
+                </ons-tab>
+                <ons-tab style="background: rgb(214, 239, 255);" page="tab3.html" label="product" icon="md-shopping-cart" active-icon="md-shopping-cart">
+                </ons-tab>
 
-    </ons-page>
-
+        </ons-page>
+    </ons-navigator>
 
 
     <template id="tab1.html">
         <ons-page>
             <p style="text-align: center; margin-top: 10px;">
-                <button onclick="scanQR()">OpenCam</button>
                 <ons-search-input id="search" placeholder="Search" onchange="scanQR()"></ons-search-input>
             </p>
             <ons-carousel fullscreen swipeable auto-scroll overscrollable id="carousel" style="height: 300px;">
@@ -87,10 +88,8 @@
 
                 </ons-carousel-item>
             </ons-carousel>
-            <!--/////////////////////////////////////////////////////////////////////////////-->
+
             <div>
-
-
                 <div id="icon"></div>
                 <script id="icon_template" type="text/template"> 
                   <ons-row class="category" style="text-align:center">      
@@ -106,13 +105,17 @@
 
                     <%});%></div>
                     </Script>
-
-
-
-
             </div>
 
             <style type="text/css">
+                * {
+                    font-family: 'Times New Roman', Times, serif;
+                }
+
+                body {
+                    background-color: rgb(152, 168, 182);
+                }
+
                 .recomended_playlist {
                     padding-left: 10px;
                 }
@@ -131,7 +134,7 @@
 
                 .thumbnail ons-icon {
                     font-size: 70px;
-                    color: rgba(190, 190, 190, 0.74);
+                    color: rgba(161, 249, 255, 0.74);
                     display: table-cell;
                     vertical-align: middle !important;
                 }
@@ -156,7 +159,7 @@
 
                 .menu_item ons-icon {
                     margin-right: 10px;
-                    color: gray;
+                    color: white;
                     font-size: 16px;
                 }
 
@@ -166,10 +169,11 @@
                 }
 
                 .category_wrapper {
-
                     width: 90%;
                     margin: auto;
-                    background-color: rgba(168, 168, 168, 0.842);
+                    background-color: rgb(62, 184, 255);
+                    border: 5px solid;
+                    border-color: white;
                 }
 
                 .category_wrapper ons-icon {
@@ -179,10 +183,9 @@
                 }
 
                 .category_wrapper1 {
-
                     width: 90%;
                     margin: auto;
-                    background-color: rgba(100, 100, 100, 0.747);
+                    background-color: rgba(236, 8, 8, 0.747);
                 }
 
                 .category_wrapper1 ons-icon {
@@ -192,10 +195,9 @@
                 }
 
                 .category_wrapper2 {
-
                     width: 90%;
                     margin: auto;
-                    background-color: rgba(65, 65, 65, 0.815);
+                    background-color: rgba(201, 25, 25, 0.815);
                 }
 
                 .category_wrapper2 ons-icon {
@@ -220,72 +222,137 @@
 
     <template id="tab2.html">
         <ons-page id="Tab2">
+            <br>
             <ons-list-header>SHOPPING CART</ons-list-header>
 
-            <div id="pic">
-                <script id="pic_template" type="text/template"> 
-                    <% cart.forEach(function(cart){%>
-            <ons-list-item>
-                <div class="left">
-                    <img class="list-item__thumbnail" src="<%= cart.photo %>">
-                </div>
-                <div class="center">
-                    <span class="list-item__title"><%= cart.itemname %></span>
-                    <span class="list-item__subtitle" style="color: blue;"><%= cart.price %></span>
-                </div>
-                <div class="right">
-
-                    <ons-icon icon="md-delete"></ons-icon>
-
-                    </div>
-            </ons-list-item><%});%> 
-
-        </Script>
+            <div id="pic"></div>
+            <script id="pic_template" type="text/template">
+                <% cart.forEach(function(cart){
+                              var cart=cart.data()
+                              %>
+                    <ons-list-item>
+                        <div class="left">
+                            <img class="list-item__thumbnail" src="<%= cart.pic %>">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title"><%= cart.title %></span>
+                            <span class="list-item__subtitle" style="color: blue;"><%= cart.price %></span>
+                        </div>
+                        <div class="right">
+        
+                            <ons-icon icon="md-delete"></ons-icon>
+        
+                            
+                    </ons-list-item><%});%> 
+        
+                </Script>
             </div>
 
-
-            <ons-button modifier="large">PROCEED TO PAY</ons-button>
+            <br>
+            <ons-button modifier="large" style="font-weight: bold;">PROCEED TO PAY</ons-button>
 
         </ons-page>
     </template>
 
-    <!-- ////////////////////////////// -->
+
     <template id="tab3.html">
-        <ons-page id="Tab3">
-            <ons-button modifier="middle" onclick="addNewData()">Add New Data</ons-button>
-            <div id="products">
-                <script id="product_template" type="text/template"> 
-                    
- <ons-row>
-        <% product.forEach(function(product){%>
-<ons-col width="33%">
-        <img class="" src="<%= product.photo %>" width="99%"height="100px">
-<%= product.name %>
-<%= product.type %>
--<%= product.price %>
-</ons-col>
+        <ons-page>
 
-<%});%> 
- </ons-row>
- 
-
-</Script>
+            <div id="product"></div>
+            <script id="product_template" type="text/template">
+                    <ons-row>
+                    <% product.forEach(function(product){
+                      var products = product.data();
+                      %>
+            <ons-col width="33%" >
+              <ons-card onclick="detail('<%- products.pid %>')">
+                <img class="" src="<%= products.pic %>" width="99%"height="70px">
+                    <br>
+                    <div style="font-size:10px"> 
+            <div style="font-weight:bold;">
+            <%= products.title %><br>
+            </div>
+            ฿<%= products.price %>
+            </div>
+              </ons-card></ons-col>
+            
+            <%});%> 
+             </ons-row>
+             
+            
+            </Script>
             </div>
 
         </ons-page>
     </template>
-    </ons-col>
 
-    <%});%>
-        </ons-row>
-
-
-        </Script>
-        </div>
-
+    <template id="tab4.html">
+        <ons-page>
+            <ons-toolbar>
+                <div class="left">
+                    <ons-back-button>Back</ons-back-button>
+                </div>
+                <div class="center"></div>
+            </ons-toolbar>
+            <div id="detail"></div>
+            <script id="detail_template" type="text/template">
+                <ons-card>
+                 
+                 <% detail.forEach(function(data){   
+                  var data = data.data(); %>
+                  <img class="" src="<%= data.pic %>" width="50%"height="50%">
+                  <div class="title" style="font-size:20px; font-col">
+                    <%= data.title %>
+                  </div>
+                  <div class="price" style="font-size:18px;">
+                    <%= data.price%>
+                  </div>
+                  <div class="detail" style="font-size:15px;">
+                    <%= data.detail%>
+                  </div>
+                  <br><ons-button onclick="addtocart('<%= data.pid %>')">ADD TO CART</ons-button>
+                  <%})%>
+                </ons-card>
+             
+            
+            </Script>
         </ons-page>
-        </template>
+    </template>
+
+    <template id="tab4.html">
+        <ons-page>
+            <ons-toolbar>
+                <div class="left">
+                    <ons-back-button>Back</ons-back-button>
+                </div>
+                <div class="center"></div>
+            </ons-toolbar>
+            <div id="detail"></div>
+            <script id="detail_template" type="text/template">
+                    <ons-card>
+                     
+                     <% detail.forEach(function(data){   
+                      var data = data.data(); %>
+                      <img class="" src="<%= data.pic %>" width="50%"height="50%">
+                      <div class="title" style="font-size:20px; font-col">
+                        <%= data.title %>
+                      </div>
+                      <div class="price" style="font-size:18px;">
+                        <%= data.price%>
+                      </div>
+                      <div class="detail" style="font-size:15px;">
+                        <%= data.detail%>
+                      </div>
+                      <br><ons-button onclick="addtocart('<%= data.pid %>')">ADD TO CART</ons-button>
+                      <%})%>
+                    </ons-card>
+                 
+                
+                </Script>
+        </ons-page>
+    </template>
 </body>
+
 <script>
     var prev = function () {
         var carousel = document.getElementById('carousel');
@@ -301,30 +368,39 @@
         var carousel = document.addEventListener('postchange', function (event) {
             console.log('Changed to ' + event.activeIndex)
         });
-    });</script>
+    });
+</script>
+
 <script>
     getHomeData()
-
-
+    tatol();
     document.addEventListener('prechange', function (event) {
-        if (event.index == 0) {
-            console.log('Home click');
-            getHomeData()
-        }
-
-        else if (event.index == 1) {
-            console.log('Cart click');
-            getCartData()
-        }
-        else if (event.index == 2) {
-            console.log('Cart click');
-            getproductData()
-        }
-    });
+    if (event.index == 0) {
+      console.log('Home click');
+      getHomeData()
+    } else if (event.index == 1) {
+      console.log('Cart click');
+      getData2cart()
+    } else if (event.index == 2) {
+      console.log('Cart click');
+      var name = localStorage.getItem('name');
+      var items = localStorage.getItem('items');
+      if (name == null && items == null) {
+        getproductData()
+      } else if (name != null && items == null) {
+        getproductData(name)
+      } else if (name != null && items == null) { }
+    } else if (event.index == 3) {
+      var title = localStorage.getItem('title');
+      console.log('Cart click');
+      // test(title)
+    }
+    localStorage.clear();
+  });
 
     function getHomeData() {
         var code = localStorage.getItem('code');
-        if(code){
+        if (code) {
             $('#search').val(code);
         }
         var docRef = db.collection("UI").doc("home");
@@ -352,7 +428,7 @@
         });
 
 
-        
+
 
         // $.getJSON('home.json', function (data) {
         //     console.log(data);
@@ -443,8 +519,8 @@
             });
     }
     function scanQR() {
-            window.location.href = 'scan.html';
-        }
+        window.location.href = 'scan.html';
+    }
 
 </script>
 
