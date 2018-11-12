@@ -372,6 +372,11 @@
 </script>
 
 <script>
+      var code = localStorage.getItem("code");
+  if (code != null) {
+    showdetail();
+  }
+
     getHomeData()
     tatol();
     document.addEventListener('prechange', function (event) {
@@ -544,7 +549,12 @@
   }
 
   function showdetail() {
+    
+    if (code != null) {
+        var id = parseInt(code);
+    } else {
     var id = localStorage.getItem('id');
+}
     db.collection("PRODUCT").where("pid", "==", id).get()
       .then(function (querySnapshot) {
         // doc.data() is never undefined for query doc snapshots
