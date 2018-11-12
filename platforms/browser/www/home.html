@@ -94,7 +94,7 @@
                 <script id="icon_template" type="text/template"> 
                   <ons-row class="category" style="text-align:center">      
                         <% categories.forEach(function(category){%>
-                    <ons-col modifier="nodivider" id="Category_1" onclick="openPlaylist(this.id) "width="33%">
+                            <ons-col modifier="nodivider" id="  " onclick="changeTab('<%= category.name %>')"width="33%"value="<%= category.name %>">
                         <div class="category_wrapper">
                             <figure class="category_thumbnail">
                                 <ons-icon id="icon1" icon="<%= category.icon %>"></ons-icon>
@@ -265,7 +265,7 @@
                       var products = product.data();
                       %>
             <ons-col width="33%" >
-              <ons-card onclick="detail('<%- products.pid %>')">
+              <ons-card onclick="showdetail('<%- products.pid %>')">
                 <img class="" src="<%= products.pic %>" width="99%"height="70px">
                     <br>
                     <div style="font-size:10px"> 
@@ -372,6 +372,11 @@
 </script>
 
 <script>
+      var code = localStorage.getItem("code");
+  if (code != null) {
+    showdetail(code);
+  }
+
     getHomeData()
     tatol();
     document.addEventListener('prechange', function (event) {
@@ -535,16 +540,14 @@
     //  getproductData(name1)
   }
 
-  function detail(pid) {
-    localStorage.setItem('id', pid);
-    myNavigator.pushPage('tab4.html')
-    showdetail()
-    // var name1 = localStorage.getItem('name');
-    //  getproductData(name1)
-  }
+//   function detail(pid) {
+//     localStorage.setItem('id', pid);
+//     showdetail();
+//     // var name1 = localStorage.getItem('name');
+//     //  getproductData(name1)
+//   }
 
-  function showdetail() {
-    var id = localStorage.getItem('id');
+  function showdetail(id) {
     db.collection("PRODUCT").where("pid", "==", id).get()
       .then(function (querySnapshot) {
         // doc.data() is never undefined for query doc snapshots
@@ -558,6 +561,7 @@
       .catch(function (error) {
         console.log("Error getting documents: ", error);
       });
+      myNavigator.pushPage('tab4.html')
     localStorage.clear();
   }
 
