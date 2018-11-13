@@ -7,11 +7,14 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css">
   <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css">
+  <link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
   <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
   <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
   <script src="ejs.js"></script>
   <script src="https://www.gstatic.com/firebasejs/5.5.7/firebase.js"></script>
   <script src="cordova.js"></script>
+  <script src="https://unpkg.com/ionicons@4.4.6/dist/ionicons.js"></script>
+
 
 
 
@@ -25,30 +28,43 @@
   </script>
   <title>Document</title>
 </head>
-<ons-page>
-  <div style="text-align: center; margin-top: 30px;">
-    <p>
-      <ons-input id="username" modifier="underbar" placeholder="Username" float></ons-input>
-    </p>
-    <p>
-      <ons-input id="password" modifier="underbar" type="password" placeholder="Password" float></ons-input>
-    </p>
-    <p style="margin-top: 30px;">
-      <ons-button onclick="login()">Sign in</ons-button>
-    </p>
-    <p style="margin-top: 30px;">
-      <ons-button onclick="google()">Sign in with Google</ons-button>
-    </p>
-    <p style="margin-top: 30px;">
-      <ons-button onclick="facebook()">Sign in with Facebook</ons-button>
-    </p>
-    <p style="margin-top: 50px;">
-      <a href="register.html">Sign up for a new user</a>
-    </p>
-  </div>
-</ons-page>
+
 
 <body>
+
+    
+
+    <ons-page >
+        <ons-toolbar style="background: rgb(214, 239, 255);">
+            <div class="center" style="text-align:center; font-weight: bold; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;"
+                id="appname">SIGN-IN</div>
+        </ons-toolbar>
+
+        <div style="text-align: center; margin-top: 30px;">
+          <p>
+            <ons-input id="username" modifier="underbar" placeholder="Username" float></ons-input>
+          </p>
+          <p>
+            <ons-input id="password" modifier="underbar" type="password" placeholder="Password" float></ons-input>
+          </p>
+          <p style="margin-top: 30px;">
+            <ons-button onclick="login()" style="font-family: 'PT Sans', sans-serif;"><i class="fas fa-sign-in-alt"></i>  Sign in</ons-button>
+          </p>
+          <p style="margin-top: 30px;">
+              <ons-button style=" background-color: rgb(47, 47, 255); font-family: 'PT Sans', sans-serif;" onclick="facebook()"><i class="fab fa-facebook-f" style="font-size: 20px;"></i>  Sign in with Facebook</ons-button>
+ 
+          </p>
+          
+          <p style="margin-top: 30px;">
+              <ons-button style=" background-color: rgb(255, 61, 61); font-family: 'PT Sans', sans-serif;" onclick="google()"><i class="fab fa-google" style="font-size: 20px;"></i> Sign in with Gmail</ons-button>
+          </p>
+          <p style="margin-top: 50px;">
+      
+            <ons-button style=" background-color: rgb(129, 59, 170); padding:5px 15px; font-size: 15px; font-family: 'PT Sans', sans-serif;" href="register.html"><i class="fas fa-user-plus"></i>  Sign up for a new user</ons-button>
+          </p>
+        </div>
+      </ons-page>
+
   <script>
     function google() {
       var provider = new firebase.auth.GoogleAuthProvider();
